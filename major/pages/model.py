@@ -19,9 +19,8 @@ class Train:
 
         if self.tinker and self.start_date and self.end_date:
             # Separate buttons for training and forecasting
-            if st.button('Train Model'):
+            if st.button('Get results'):
                 self.train_model()
-            if st.button('Get Results') and self.model is not None:
                 predictor = StockPricePredictor()
                 train_seq, train_label, test_seq, test_label,scaler,gstock_data,training_size = predictor.preprocess_yfinance_data("AAPL", years=5)  # Get test sequence input from user
                 self.forecasting(test_seq,gstock_data,scaler,self.model)
@@ -59,6 +58,7 @@ class Train:
             lst_output = StockPricePredictor().forecasting(test_seq, model)
             # Plotting the forecast predictions
             StockPricePredictor().plot_predictions(gs_slice_data, scaler, test_predicted, lst_output)
+            st.success("polted successfully!")
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
 

@@ -12,14 +12,15 @@ st.page_link("pages\model.py",label="model_training",icon="🌎")
 
 # Add creator names and contact information
 st.write("Created by:")
-st.write("- John Doe")
-st.write("- Jane Smith")
+st.write("- Tudimilla Dheeraj Kummar Chary")
+st.write("- Nagarjuna Reddy")
+st.write("- Kotika Venkata Kavya")
 
 # Add contact information
 st.write("Contact us:")
 st.write("Phone: 7893334349")
 
-st.sidebar.write("Jane Smith (janesmith@example.com)")
+st.sidebar.write("Jane Smith (20eg107150@anurag.edu.in)")
 
 # Disclaimer (optional)
 st.write("**Disclaimer:** Stock price predictions are not guaranteed to be accurate. Please conduct your own research and due diligence before making any investment decisions.")

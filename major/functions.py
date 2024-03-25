@@ -127,7 +127,7 @@ class StockPricePredictor:
         model.add(Dropout(0.2))
         model.add(Dense(4))
         model.compile(loss='mean_squared_error', optimizer='adam', metrics=['mean_absolute_error'])
-
+        st.write("accuracy")
 
         return model
     
@@ -146,16 +146,16 @@ class StockPricePredictor:
         # Concatenating the two DataFrames along the columns axis
         gs_slice_data = pd.concat([gstock_subset, predicted_df], axis=1)
 
-        gs_slice_data[['open','close','high','close']] = scaler.inverse_transform(gs_slice_data[['open','close','high','close']])
+        gs_slice_data[['Open','Close','High','Low']] = scaler.inverse_transform(gs_slice_data[['Open','Close','High','Low']])
 
         fig = go.Figure()
 
         # Plot actual 'open' and 'open_predicted'
-        fig.add_trace(go.Scatter(x=gs_slice_data.index, y=gs_slice_data['open'], mode='lines', name='Actual Open'))
+        fig.add_trace(go.Scatter(x=gs_slice_data.index, y=gs_slice_data['Open'], mode='lines', name='Actual Open'))
         fig.add_trace(go.Scatter(x=gs_slice_data.index, y=gs_slice_data['open_predicted'], mode='lines', name='Predicted Open', line=dict(dash='dash')))
 
         # Plot actual 'close' and 'close_predicted'
-        fig.add_trace(go.Scatter(x=gs_slice_data.index, y=gs_slice_data['close'], mode='lines', name='Actual Close'))
+        fig.add_trace(go.Scatter(x=gs_slice_data.index, y=gs_slice_data['Close'], mode='lines', name='Actual Close'))
         fig.add_trace(go.Scatter(x=gs_slice_data.index, y=gs_slice_data['close_predicted'], mode='lines', name='Predicted Close', line=dict(dash='dash')))
 
         fig.update_layout(
@@ -247,3 +247,4 @@ class StockPricePredictor:
         )
 
         st.plotly_chart(fig)
+    
